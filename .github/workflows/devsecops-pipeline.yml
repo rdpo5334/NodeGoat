@@ -61,6 +61,12 @@ jobs:
           node --version
           npm --version        
 
+
+      - name: Consultar actualizacion de adm-zip
+        run: |
+          npm view adm-zip version
+          npm view selenium-webdriver version
+
       - name: Generar SBOM con Syft
         uses: anchore/sbom-action@v0
         with:
