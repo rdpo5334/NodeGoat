@@ -32,9 +32,10 @@ jobs:
           semgrep scan \
             --config p/security-audit \
             --config p/owasp-top-ten \
+            --severity ERROR \
+            --error \
             --sarif \
-            --output semgrep-results.sarif \
-            --no-error
+            --output semgrep-results.sarif
 
       - name: Publicar reporte SARIF
         if: always()
