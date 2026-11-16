@@ -67,6 +67,13 @@ jobs:
           npm view adm-zip version
           npm view selenium-webdriver version
 
+
+      - name: Probar actualizacion de adm-zip
+        run: |
+          npm pkg set 'overrides.adm-zip=0.6.1'
+          npm install --package-lock-only --ignore-scripts
+          npm ls adm-zip --package-lock-only
+
       - name: Generar SBOM con Syft
         uses: anchore/sbom-action@v0
         with:
