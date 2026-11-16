@@ -51,6 +51,16 @@ jobs:
       - name: Descargar codigo
         uses: actions/checkout@v4
 
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verificar Node.js y npm
+        run: |
+          node --version
+          npm --version        
+
       - name: Generar SBOM con Syft
         uses: anchore/sbom-action@v0
         with:
