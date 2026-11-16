@@ -42,3 +42,23 @@ jobs:
         with:
           name: semgrep-sarif-report
           path: semgrep-results.sarif
+
+  sca-and-sbom:
+    name: SCA - Generacion de SBOM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo
+        uses: actions/checkout@v4
+
+      - name: Generar SBOM con Syft
+        uses: anchore/sbom-action@v0
+        with:
+          format: cyclonedx-json
+          output-file: sbom.cyclonedx.json
+
+      - name: Publicar SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-cyclonedx
+          path: sbom.cyclonedx.json
